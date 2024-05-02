@@ -6,6 +6,7 @@ public class ProgramaJuego {
 
 	public static void main(String[] args) {
 		Scanner teclado = new Scanner(System.in);
+		Jugador jugador = new Jugador(null);
 		
 		System.out.println("Bienvenido a Atrapa un Millon");
 		boolean continuar = true;
@@ -46,14 +47,17 @@ public class ProgramaJuego {
 
 					switch (opcionSubmenu) {
 					case 1:
-						System.out.println("1");
+						jugador.mostrarJugadores();
 						break;
-
 					case 2:
-						System.out.println("2");
+						System.out.print("Ingrese el nombre del nuevo jugador: ");
+						String nombreNuevo = teclado.next();
+						jugador.anyadirJugador(new Jugador(nombreNuevo));
 						break;
 					case 3:
-						System.out.println("3");
+						System.out.print("Ingrese el nombre del jugador a eliminar: ");
+	                    String nombreEliminar = teclado.next();
+	                    jugador.eliminarJugador(new Jugador(nombreEliminar));
 						break;
 					case 4:
 						System.out.println("****************Saliendo de submenú****************");

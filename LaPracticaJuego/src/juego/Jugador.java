@@ -8,10 +8,17 @@ public class Jugador {
 	private int puntuacion;
 	private ArrayList<Jugador> listaJugadores;
 
+	
+	public Jugador(String nombre) {
+		super();
+		this.nombre = nombre;
+		this.listaJugadores = new ArrayList();
+	}
+
 	public Jugador(String nombre, int puntuacion) {
 		super();
 		this.nombre = nombre;
-		this.puntuacion = puntuacion;
+		this.puntuacion = 0;
 		this.listaJugadores = new ArrayList();
 	}
 
