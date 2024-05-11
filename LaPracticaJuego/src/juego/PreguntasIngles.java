@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class PreguntasIngles extends Pregunta {
 	
+	private Scanner teclado = new Scanner(System.in);
 	Random aleatorio = new Random();
 	String respuestaCorrecta;
 
@@ -19,6 +21,13 @@ public class PreguntasIngles extends Pregunta {
 		this.aleatorio = aleatorio;
 		this.respuestaCorrecta = respuestaCorrecta;
 	}
+    
+    public void generarPreguntaIngles() {
+    	mostrarPregunta();
+        char letra = teclado.next().toUpperCase().charAt(0);
+        verificarRespuesta(letra);
+    }
+    
 	public void mostrarPregunta() {
         try {
             Path rutaFicheroIngles = Paths.get(util.Constantes.RUTA_FICHERO_PREGUNTAS_INGLLES);

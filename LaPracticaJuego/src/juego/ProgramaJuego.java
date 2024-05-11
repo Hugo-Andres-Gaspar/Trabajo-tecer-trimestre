@@ -28,27 +28,19 @@ public class ProgramaJuego {
 
 			switch (opcion) {
 			case 1:
-				int tipoPregunta = aleatorio.nextInt(3) + 1;
+			    int tipoPregunta = aleatorio.nextInt(3) + 1;
 
-				if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_LETRAS) {
-					PreguntasLetras preguntaLetras = new PreguntasLetras();
-					System.out.println(preguntaLetras.getPalabraOculta());
-					String palabra = teclado.next();
-					preguntaLetras.palabraCorrecta(palabra);
-				} else if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_INGLES) {
-					PreguntasIngles preguntaIngles = new PreguntasIngles(null, aleatorio, null);
-					preguntaIngles.mostrarPregunta();
-					char letra = teclado.next().toUpperCase().charAt(0);
-					preguntaIngles.verificarRespuesta(letra);
-				} else {
-					PreguntasMates preguntaMates = new PreguntasMates();
-					preguntaMates.generarPreguntaMates();
-					int numero = teclado.nextInt();
-					preguntaMates.comprobarResultado(numero);
-
-				}
-				break;
-
+                if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_LETRAS) {
+                    PreguntasLetras preguntaLetras = new PreguntasLetras("Enunciado para preguntas de letras");
+                    preguntaLetras.generarPreguntaLetras();
+                } else if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_INGLES) {
+                	PreguntasIngles preguntaIngles = new PreguntasIngles(null, aleatorio, null);
+			        preguntaIngles.generarPreguntaIngles();
+                } else if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_MATES) {
+                    PreguntasMates preguntaMates = new PreguntasMates("Enunciado para preguntas de matemáticas");
+                    preguntaMates.generarPreguntaMates();
+                }
+                break;
 			case 2:
 
 				break;
