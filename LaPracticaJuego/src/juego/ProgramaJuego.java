@@ -1,15 +1,14 @@
 package juego;
 
-import java.util.Random;
+import java.io.IOException;
 import java.util.Scanner;
 
-import util.Constantes;
+import registros.Historico;
 
 public class ProgramaJuego {
 
 	public static void main(String[] args) {
 		Scanner teclado = new Scanner(System.in);
-		Random aleatorio = new Random();
 		Jugador jugador = new Jugador(null);
 
 		System.out.println("Bienvenido a Atrapa un Millon");
@@ -28,24 +27,19 @@ public class ProgramaJuego {
 
 			switch (opcion) {
 			case 1:
-			    int tipoPregunta = aleatorio.nextInt(3) + 1;
-
-                if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_LETRAS) {
-                    PreguntasLetras preguntaLetras = new PreguntasLetras("Enunciado para preguntas de letras");
-                    preguntaLetras.generarPreguntaLetras();
-                } else if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_INGLES) {
-                	PreguntasIngles preguntaIngles = new PreguntasIngles(null, aleatorio, null);
-			        preguntaIngles.generarPreguntaIngles();
-                } else if (tipoPregunta == Constantes.ARCHIVO_PREGUNTAS_MATES) {
-                    PreguntasMates preguntaMates = new PreguntasMates("Enunciado para preguntas de matemáticas");
-                    preguntaMates.generarPreguntaMates();
-                }
+			    Partida.iniciarPartida();
+			    Partida.hacerPregunta();
                 break;
 			case 2:
-
 				break;
 			case 3:
-				System.out.println("3");
+				try {
+					Historico.comprobarHistorico();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Historico.guardarpartida();
 				break;
 			case 4:
 				boolean continuarSubmenu = true;

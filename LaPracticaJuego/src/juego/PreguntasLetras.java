@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import util.Constantes;
+
 public class PreguntasLetras extends Pregunta{
 
 	Scanner teclado = new Scanner(System.in);
@@ -34,7 +36,7 @@ public class PreguntasLetras extends Pregunta{
     
     private void elegirPalabraAleatoria() {
         try {
-            Path rutaFicheroDiccionario = Paths.get(util.Constantes.RUTA_FICHERO_PREGUNTAS_LETRAS);
+            Path rutaFicheroDiccionario = Paths.get(Constantes.RUTA_FICHERO_PREGUNTAS_LETRAS);
             List<String> palabras = Files.readAllLines(rutaFicheroDiccionario);
             if (!palabras.isEmpty()) {
                 palabraElegida = palabras.get(aleatorio.nextInt(palabras.size()));

@@ -21,6 +21,14 @@ public class Jugador {
 		this.puntuacion = 0;
 		this.listaJugadores = new ArrayList();
 	}
+	
+	public void comprobarJugador(Jugador jugador) {
+		if (jugador.getListaJugadores().equals(jugador)) {
+			System.out.println("Este jugador ya esta registrado");
+		}else {
+			System.out.println("Este jugador no esta registrado");
+		}
+	}
 
 	public boolean anyadirJugador(Jugador jugador) {
 		// Verifica si el jugador ya está en la lista
@@ -59,6 +67,10 @@ public class Jugador {
 		}
 	}
 
+	public void anyadirPuntos(){
+        puntuacion++;
+    }
+	
 	public String getNombre() {
 		return nombre;
 	}

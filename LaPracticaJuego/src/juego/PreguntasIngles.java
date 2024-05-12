@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import util.Constantes;
+
 public class PreguntasIngles extends Pregunta {
 	
 	private Scanner teclado = new Scanner(System.in);
@@ -30,7 +32,7 @@ public class PreguntasIngles extends Pregunta {
     
 	public void mostrarPregunta() {
         try {
-            Path rutaFicheroIngles = Paths.get(util.Constantes.RUTA_FICHERO_PREGUNTAS_INGLLES);
+            Path rutaFicheroIngles = Paths.get(Constantes.RUTA_FICHERO_PREGUNTAS_INGLLES);
             List<String> preguntas = Files.readAllLines(rutaFicheroIngles);
             Random aleatorio = new Random();
             int lineas = aleatorio.nextInt(preguntas.size() / 5);

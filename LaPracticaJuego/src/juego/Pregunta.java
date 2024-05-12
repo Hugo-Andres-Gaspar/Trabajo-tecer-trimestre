@@ -1,7 +1,5 @@
 package juego;
 
-import util.Constantes;
-
 public class Pregunta {
 
 	protected String enunciado;
