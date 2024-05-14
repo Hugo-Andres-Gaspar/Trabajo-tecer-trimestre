@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import registros.Historico;
+import util.Constantes;
 
 public class ProgramaJuego {
 
@@ -27,8 +28,31 @@ public class ProgramaJuego {
 
 			switch (opcion) {
 			case 1:
-			    Partida.iniciarPartida();
-			    Partida.hacerPregunta();
+				boolean hayJugadores = Partida.solicitarJugadores();
+                if (hayJugadores) {
+                	System.out.println("****************Entrando en partida****************");
+
+                    int tiporondas = Partida.seleccionarRonda();
+                    switch (tiporondas) {
+                        case Constantes.PARTIDA_RAPIDA:
+                            Partida.partidaRapida();
+                            break;
+                        case Constantes.PARTIDA_CORTA:
+                            Partida.partidaCorta();
+                            break;
+                        case Constantes.PARTIDA_NORMAL:
+                            Partida.partidaNormal();
+                            break;
+                        case Constantes.PARTIDA_LARGA:
+                            Partida.partidaLarga();
+                            break;
+                        default:
+                        	System.out.println("****************Tipo de partida no valida****************");
+                            break;
+                    }
+                }else {
+                    System.out.println("No se han podido elegir los jugadores, volviendo al menu principal.....");
+                }
                 break;
 			case 2:
 				break;
@@ -55,17 +79,17 @@ public class ProgramaJuego {
 
 					switch (opcionSubmenu) {
 					case 1:
-						jugador.mostrarJugadores();
+						Jugador.mostrarJugadores();
 						break;
 					case 2:
-						System.out.print("Ingrese el nombre del nuevo jugador: ");
-						String nombreNuevo = teclado.next();
-						jugador.anyadirJugador(new Jugador(nombreNuevo));
+						System.out.print("Dime el nombre del jugador que quieres añadir: ");
+						String nombreAnyadir = teclado.next();
+						Jugador.anyadirJugador(nombreAnyadir);
 						break;
 					case 3:
-						System.out.print("Ingrese el nombre del jugador a eliminar: ");
-						String nombreEliminar = teclado.next();
-						jugador.eliminarJugador(new Jugador(nombreEliminar));
+						System.out.print("Dime el nombre del jugador que quieres borrar: ");
+						String nombreBorrar = teclado.next();
+						Jugador.eliminarJugador(nombreBorrar);
 						break;
 					case 4:
 						System.out.println("****************Saliendo de submenú****************");
@@ -73,8 +97,7 @@ public class ProgramaJuego {
 						continuarSubmenu = false;
 						break;
 					default:
-						System.out.println(
-								"No has elegido ninguna de las opciones pedidas, por favor vuelva a introducir una nueva opción");
+						System.out.println("No has elegido ninguna de las opciones pedidas, por favor vuelva a introducir una nueva opción");
 						break;
 					}
 
@@ -86,13 +109,13 @@ public class ProgramaJuego {
 				continuar = false;
 				break;
 			default:
-				System.out.println(
-						"No has elegido ninguna de las opciones pedidas, por favor vuelva a introducir una nueva opción");
+				System.out.println("No has elegido ninguna de las opciones pedidas, por favor vuelva a introducir una nueva opción");
 				break;
 			}
 
 		}
 
+		
 		teclado.close();
 	}
 

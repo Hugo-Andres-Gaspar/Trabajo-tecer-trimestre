@@ -6,57 +6,56 @@ import java.util.Objects;
 public class Jugador {
 	private String nombre;
 	private int puntuacion;
-	private ArrayList<Jugador> listaJugadores;
+	private static ArrayList<Jugador> listaJugadores = new ArrayList();
 
-	
 	public Jugador(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.listaJugadores = new ArrayList();
+		this.puntuacion = 0;
 	}
 
 	public Jugador(String nombre, int puntuacion) {
 		super();
 		this.nombre = nombre;
 		this.puntuacion = 0;
-		this.listaJugadores = new ArrayList();
 	}
-	
+
 	public void comprobarJugador(Jugador jugador) {
 		if (jugador.getListaJugadores().equals(jugador)) {
 			System.out.println("Este jugador ya esta registrado");
-		}else {
+		} else {
 			System.out.println("Este jugador no esta registrado");
 		}
 	}
 
-	public boolean anyadirJugador(Jugador jugador) {
-		// Verifica si el jugador ya está en la lista
-		if (listaJugadores.contains(jugador)) {
-			System.out.println("El jugador ya existe en la lista.");
-			return false; // No se puede añadir el jugador
+	public static void anyadirJugador(String nombre) {
+		Jugador jugadorNuevo = new Jugador(nombre);
+		if (listaJugadores.contains(jugadorNuevo)) {
+			System.out.println("Este Jugador ya está registrado");
 		} else {
-			// Agrega el jugador a la lista
-			listaJugadores.add(jugador);
-			System.out.println("Jugador añadido correctamente.");
-			return true; // Jugador añadido con éxito
+			listaJugadores.add(jugadorNuevo);
+			System.out.println("El Jugador " + "(" + nombre + ")" + " añadido correctamente");
 		}
+		System.out.println();
 	}
 
-	public boolean eliminarJugador(Jugador jugador) {
-		// Verifica si el jugador está en la lista
-		if (listaJugadores.contains(jugador)) {
-			// Elimina el jugador de la lista
-			listaJugadores.remove(jugador);
-			System.out.println("Jugador eliminado correctamente.");
-			return true; // Jugador eliminado con éxito
-		} else {
-			System.out.println("El jugador no existe en la lista.");
-			return false; // No se puede eliminar el jugador porque no está en la lista
+	public static void eliminarJugador(String nombreBorrar) {
+		boolean encontrado = false;
+		for (Jugador jugador : listaJugadores) {
+			if (jugador.getNombre().equals(nombreBorrar)) {
+				encontrado = true;
+				listaJugadores.remove(jugador);
+				System.out.println("Se ha borrado con éxito al jugador " + "(" + nombreBorrar + ")");
+				break;
+			}
 		}
+		if (!encontrado) {
+			System.out.println("El nombre " + "(" + nombreBorrar + ")" + " no esta registrado, no se puede borrar");
+		}
+		System.out.println();
 	}
 
-	public void mostrarJugadores() {
+	public static void mostrarJugadores() {
 		if (listaJugadores.isEmpty()) {
 			System.out.println("No hay jugadores en la lista.");
 		} else {
@@ -67,10 +66,28 @@ public class Jugador {
 		}
 	}
 
-	public void anyadirPuntos(){
-        puntuacion++;
+	public static boolean elegirJugadorPorNombre(String nombre){
+        boolean encontrado = false;
+        for (Jugador jugador : listaJugadores) {
+            if(jugador.getNombre().contains(nombre)){
+                System.out.println(" " + jugador + " ");
+                encontrado = true;
+            }
+        }
+        if (!encontrado){
+            System.out.println("No se ha encontrado al jugador: " + nombre);
+        }
+        return encontrado;
     }
-	
+
+	public void anyadirPuntos() {
+		puntuacion++;
+	}
+
+	public static ArrayList<Jugador> obtenerJugadoresDeLaPartida() {
+		return listaJugadores;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -97,7 +114,7 @@ public class Jugador {
 
 	@Override
 	public String toString() {
-		return "Jugador:" + nombre + " tiene una puntuacion de:" + puntuacion + ".";
+		return "Jugador: " + nombre + " tiene una puntuacion de: " + puntuacion + ".";
 	}
 
 	public void imprimirJugador() {

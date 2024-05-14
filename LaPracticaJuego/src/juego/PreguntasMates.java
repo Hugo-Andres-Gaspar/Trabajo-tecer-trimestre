@@ -1,6 +1,5 @@
 package juego;
 
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,6 +13,9 @@ public class PreguntasMates extends Pregunta{
     private int resultado;
     private int cantidadNumerosOperacion;
 
+    public PreguntasMates() {
+    }
+    
     public PreguntasMates(String enunciado) {
         super(enunciado);
     }
@@ -22,11 +24,9 @@ public class PreguntasMates extends Pregunta{
         generarOperacion();
         calcularResultado();
         mostrarPreguntaYOperacion();
-        int numero = teclado.nextInt();
-        comprobarResultado(numero);
     }
 
-    private void generarOperacion() {
+    public void generarOperacion() {
         cantidadNumerosOperacion = aleatorio.nextInt(5) + 4;
 
         for (int contador = 0; contador < cantidadNumerosOperacion; contador++) {
@@ -73,5 +73,9 @@ public class PreguntasMates extends Pregunta{
             System.out.println("El resultado es incorrecto, el resultado correcto es: " + resultado);
             return false;
         }
+    }
+    
+    public int respuestaMatesCPU(){
+        return resultado;
     }
 }

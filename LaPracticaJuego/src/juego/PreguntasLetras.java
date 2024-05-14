@@ -17,6 +17,10 @@ public class PreguntasLetras extends Pregunta{
     private String palabraElegida;
     private String letrasOcultas;
 
+    public PreguntasLetras() {
+    	
+    }
+    
     public PreguntasLetras(String enunciado) {
         super(enunciado);
     }
@@ -26,8 +30,6 @@ public class PreguntasLetras extends Pregunta{
         elegirPalabraAleatoria();
         ocultarLetras();
         mostrarPalabraOculta();
-        String palabra = teclado.next();
-        comprobarPalabra(palabra);
     }
 
     private void mostrarPreguntaYOperacion() {
@@ -69,14 +71,17 @@ public class PreguntasLetras extends Pregunta{
         System.out.println("Palabra oculta: " + letrasOcultas); 
     }
     
-    private void comprobarPalabra(String palabra) {
+    public boolean comprobarPalabra(String palabra) {
         if (palabra.equalsIgnoreCase(palabraElegida)) {
-            System.out.println("Enhorabuena, esa es la palabra correcta");
+            System.out.println("Enhorabuena esa es la palabra correcta");
+            return true;
         } else {
             System.out.println("La palabra es incorrecta");
             System.out.println("La palabra correcta es: " + palabraElegida);
+            return false;
         }
     }
+
 
     public String getPalabraElegida() {
         return palabraElegida;
@@ -84,6 +89,10 @@ public class PreguntasLetras extends Pregunta{
 
     public String getPalabraOculta() {
         return letrasOcultas;
+    }
+    
+    public String respuestaLetrasCpu(){
+        return "zzzzzzzzzz";
     }
     
 }
