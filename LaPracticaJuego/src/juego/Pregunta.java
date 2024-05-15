@@ -5,8 +5,9 @@ public class Pregunta {
 	protected String enunciado;
 
 	public Pregunta() {
-		
+
 	}
+
 	public Pregunta(String enunciado) {
 		super();
 		this.enunciado = enunciado;
@@ -19,6 +20,5 @@ public class Pregunta {
 	public void setEnunciado(String enunciado) {
 		this.enunciado = enunciado;
 	}
-	
 
 }

@@ -66,19 +66,19 @@ public class Jugador {
 		}
 	}
 
-	public static boolean elegirJugadorPorNombre(String nombre){
-        boolean encontrado = false;
-        for (Jugador jugador : listaJugadores) {
-            if(jugador.getNombre().contains(nombre)){
-                System.out.println(" " + jugador + " ");
-                encontrado = true;
-            }
-        }
-        if (!encontrado){
-            System.out.println("No se ha encontrado al jugador: " + nombre);
-        }
-        return encontrado;
-    }
+	public static boolean elegirJugadorPorNombre(String nombre) {
+		boolean encontrado = false;
+		for (Jugador jugador : listaJugadores) {
+			if (jugador.getNombre().contains(nombre)) {
+				System.out.println(" " + jugador + " ");
+				encontrado = true;
+			}
+		}
+		if (!encontrado) {
+			System.out.println("No se ha encontrado al jugador: " + nombre);
+		}
+		return encontrado;
+	}
 
 	public void anyadirPuntos() {
 		puntuacion++;
