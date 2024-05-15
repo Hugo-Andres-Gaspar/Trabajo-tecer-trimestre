@@ -13,11 +13,18 @@ import java.util.Comparator;
 import juego.Jugador;
 import util.Constantes;
 
+/**
+ * @author [Hugo Andrés Gaspar]
+ * @version 1.0
+ */
 public class Ranking {
 
 	private static ArrayList<Jugador> ranking = Jugador.obtenerJugadoresDeLaPartida();
 	private static ArrayList<Jugador> listaRanking = new ArrayList<>();
 
+	/**
+	 * Muestra el ranking de jugadores por consola.
+	 */
 	public static void mostarRanking() {
 		for (Jugador jugadores : ranking) {
 			if (!jugadores.getNombre().startsWith("CPU")) {
@@ -32,6 +39,11 @@ public class Ranking {
 		}
 	}
 
+	/**
+	 * Comprueba la existencia del archivo de ranking y lo crea si no existe.
+	 * 
+	 * @throws IOException si ocurre un error al crear el archivo de ranking
+	 */
 	public static void comprobarRanking() throws IOException {
 		Path rutaFichero = Paths.get(Constantes.RUTA_RANKING);
 		if (!Files.exists(rutaFichero)) {
@@ -40,6 +52,9 @@ public class Ranking {
 		}
 	}
 
+	/**
+	 * Guarda el ranking de jugadores en el archivo correspondiente.
+	 */
 	public static void guardarRanking() {
 		try (BufferedWriter bufer = new BufferedWriter(new FileWriter(Constantes.RUTA_RANKING, true))) {
 			// Ordenar el ranking por puntuación en orden descendente
